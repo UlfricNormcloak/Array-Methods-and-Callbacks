@@ -37,9 +37,7 @@ function getFinals(data) {
 
     console.log(fifaData);
 
-    //Filter here to filter for the stage of final
-    //return the array
-   /* code here */
+
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -54,13 +52,9 @@ function getYears(data, getFinalscb) {
     return getFinalscb(data).map(function(item){
         return item.Year;
     })
-    return years;
-
-    //map through the finals cb to get all of the item.Year
-
-    //return the array
-    /* code here */
+    return years
 }
+
 
 
 
@@ -73,16 +67,21 @@ Use the higher-order function getWinners to do the following:
 
 
 //2 parameters- data(fifaData)/ getFinalscb
+
 function getWinners(array, getFinalscb) {
 
-   const winners = getFinalscb(array.map(function(item){
+   const winners = getFinalscb(array).map(function(item){
        if (item['Home Team Goals'] > item['Away Team Goals']){
-           return item['Home Team Name']
+           return item['Home Team Name'];
        } else {
-           return item['Away Team Name']
+           return item['Away Team Name'];
    }
-   return winners;
-})
+   
+});
+return winners;
+}
+
+console.log("Task");
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -94,13 +93,14 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(data, getYearscb, getWinnerscb) {
+
+function getWinnersByYear(data, getYearscb, getWinnerscb){
     const winners = getWinnerscb(data, getFinals);
     const years = getYearscb(data, getFinals);
 
-    return winners.map((function(item, index){
+    return winners.map(function(item, index){
         return `In ${years[index]}, ${item} won the world cup!`;
-    })
+    });
 }
 
 console.log(getWinnersByYear(fifaData, getYears, getWinners));
@@ -121,10 +121,10 @@ function getAverageGoals(getFinalscb) {
    const averageTeamGoals = getFinalscb.reduce(function(acc, item){
        return acc + item['Home Team Goals'] + item['Away Team Goals'];
    },0);
-   return (averageTeamGaosl / getFinalscb.length).toFixed(2);
+   return (averageTeamGoals / getFinalscb.length).toFixed(2);
 }
 
-console.log(getAverageGoals(getFinals(fifaData)));
+   console.log(getAverageGoals(getFinals(fifaData)));
 
 
 
@@ -138,14 +138,14 @@ Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
 function getCountryWins(data, initials) {
-   const filteredArray = data.filter(item => initials === item['Home Team Initials'] || initials ===item['Away Team Initials']);
-   console.log(filteredArray);
-   const worldcupwins = filteredArray.filter()
-    /* code here */
+//    const filteredArray = data.filter(item => initials === item['Home Team Initials'] || initials ===item['Away Team Initials']);
+//    console.log(filteredArray);
+//    const worldcupwins = filteredArray.filter()
+//     /* code here */
 
 }
 
-console.log(getCountryWins(fifaData, initials, 'GER'));
+//console.log(getCountryWins(fifaData, initials, 'GER'));
 
 /* 💪💪💪💪💪 Stretch 2: 💪💪💪💪💪 
 Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
